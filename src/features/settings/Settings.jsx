@@ -1,7 +1,12 @@
 import { useId } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { decFontSize, incFontSize, resetFontSize, toggleLanguage, toggleTheme } from "./settingsSlice";
 
 export default function Settings() {
     const id = useId();
+
+    const { theme, language, fontSize } = useSelector((state) => state.settings);
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -9,21 +14,21 @@ export default function Settings() {
             <form>
                 <div>
                     <label htmlFor={`lang${id}`}>שפה</label>
-                    <select id={`lang${id}`}>
-                        <option value="hebrew">עברית</option>
-                        <option value="english">English</option>
+                    <select id={`lang${id}`} value={language} onChange={() => dispatch(toggleLanguage())}>
+                        <option value="he">עברית</option>
+                        <option value="en">English</option>
                     </select>
                 </div>
                 <div>
                     <label htmlFor={`theme${id}`}>ערכת עיצוב</label>
-                    <button type="button">Dark</button>
+                    <button type="button" onClick={() => dispatch(toggleTheme())}>{theme}</button>
                 </div>
                 <div>
                     <label htmlFor={`fs${id}`}>גודל כתב</label>
-                    <button type="button">+</button>
-                    16
-                    <button type="button">-</button>
-                    <button type="button">אפס</button>
+                    <button type="button" onClick={() => dispatch(incFontSize())}>+</button>
+                    <span>{fontSize}</span>
+                    <button type="button" onClick={() => dispatch(decFontSize())}>-</button>
+                    <button type="button" onClick={() => dispatch(resetFontSize())}>אפס</button>
                 </div>
             </form>
         </div>

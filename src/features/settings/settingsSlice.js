@@ -8,7 +8,23 @@ const settingsSlice = createSlice({
         fontSize: 16,
     },
     reducers: {
+        toggleTheme(state, action) {
+            state.theme = (state.theme === "light") ? "dark" : "light";
+        },
+        toggleLanguage(state, action) {
+            state.language = (state.language === "en") ? "he" : "en";
+        },
+        incFontSize(state, action) {
+            state.fontSize++;
+        },
+        decFontSize(state, action) {
+            state.fontSize--;
+        },
+        resetFontSize(state, action) {
+            state.fontSize = 16;
+        },
     },
 });
 
+export const { toggleTheme, toggleLanguage, incFontSize, decFontSize, resetFontSize } = settingsSlice.actions;
 export default settingsSlice.reducer;
