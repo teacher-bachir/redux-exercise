@@ -15,10 +15,14 @@ const settingsSlice = createSlice({
             state.language = (state.language === "en") ? "he" : "en";
         },
         incFontSize(state, action) {
-            state.fontSize++;
+            if (state.fontSize < 30) {
+                state.fontSize++;
+            }
         },
         decFontSize(state, action) {
-            state.fontSize--;
+            if (state.fontSize > 10) {
+                state.fontSize--;
+            }
         },
         resetFontSize(state, action) {
             state.fontSize = 16;
