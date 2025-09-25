@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { register } from './usersSlice';
+import Button from '../app/Button';
 
 // controlled form
 export default function Register() {
@@ -52,7 +53,7 @@ export default function Register() {
                     <label htmlFor={`email${id}`}>{STRINGS[language].email}: </label>
                     <input type="email" name="email" id={`email${id}`} value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
-                <button>{STRINGS[language].button}</button>
+                <Button hebrew={STRINGS.he.button} english={STRINGS.en.button} />
             </form>
         </div>
     )

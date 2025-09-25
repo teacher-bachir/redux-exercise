@@ -2,6 +2,7 @@ import { useId, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from './usersSlice';
+import Button from '../app/Button';
 
 // uncontrolled form
 export default function Login() {
@@ -47,7 +48,7 @@ export default function Login() {
                     <label htmlFor={`password${id}`}>{STRINGS[language].password}: </label>
                     <input type="password" name="password" id={`password${id}`} ref={passwordRef} />
                 </div>
-                <button>{STRINGS[language].button}</button>
+                <Button hebrew={STRINGS.he.button} english={STRINGS.en.button} />
             </form>
         </div>
     )
