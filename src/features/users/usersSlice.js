@@ -32,8 +32,11 @@ const usersSlice = createSlice({
                 alert('register failed');
             }
         },
+        logout(state, action) {
+            state.currentUser = null;
+        }
     },
 });
 
-export const { login, register } = usersSlice.actions;
+export const { login, register, logout } = usersSlice.actions;
 export default usersSlice.reducer;
