@@ -6,7 +6,7 @@ export default function Navbar() {
     return (
         <div>
             <nav>
-                <h1>Welcome {currentUser?.username ?? 'Guest'}</h1>
+                <h1>Welcome {currentUser?.name ?? 'Guest'}</h1>
                 <ul>
                     {/* TODO: replace <a> tags with <NavLink> components */}
                     <li><a href="#">home</a></li>
