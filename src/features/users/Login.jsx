@@ -1,14 +1,31 @@
 import { useId, useRef } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from './usersSlice';
 
 // uncontrolled form
 export default function Login() {
+    const STRINGS = {
+        en: {
+            title: 'Login',
+            name: 'name',
+            password: 'password',
+            button: 'OK'
+        },
+        he: {
+            title: 'התחברות',
+            name: 'שם משתמש',
+            password: 'סיסמא',
+            button: 'אישור'
+        }
+    };
+
     const id = useId();
     const nameRef = useRef();
     const passwordRef = useRef();
 
+    const { language } = useSelector(state => state.settings);
+    const direction = (language === 'he') ? 'rtl' : 'ltr';
     const dispatch = useDispatch();
 
     const handleSubmit = (ev) => {
@@ -19,18 +36,18 @@ export default function Login() {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div style={{ direction }}>
+            <h2>{STRINGS[language].title}</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor={`name${id}`}>name: </label>
+                    <label htmlFor={`name${id}`}>{STRINGS[language].name}: </label>
                     <input type="text" name="name" id={`name${id}`} ref={nameRef} />
                 </div>
                 <div>
-                    <label htmlFor={`password${id}`}>password: </label>
+                    <label htmlFor={`password${id}`}>{STRINGS[language].password}: </label>
                     <input type="text" name="password" id={`password${id}`} ref={passwordRef} />
                 </div>
-                <button>OK</button>
+                <button>{STRINGS[language].button}</button>
             </form>
         </div>
     )
