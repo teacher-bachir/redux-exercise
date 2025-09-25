@@ -13,9 +13,13 @@ const usersSlice = createSlice({
     initialState,
     reducers: {
         login(state, action) {
-            debugger
             const currentUser = state.users.find(u => u.name === action.payload.name && u.password === action.payload.password);
-            state.currentUser = currentUser ?? null;
+
+            if (currentUser) {
+                state.currentUser = currentUser;
+            } else {
+                alert('login failed');
+            }
         },
         register(state, action) {
             const currentUser = action.payload;
@@ -24,6 +28,8 @@ const usersSlice = createSlice({
             if (!isExists) {
                 state.users.push(action.payload);
                 state.currentUser = currentUser;
+            } else {
+                alert('register failed');
             }
         },
     },
