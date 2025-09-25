@@ -45,7 +45,7 @@ export default function Login() {
                 </div>
                 <div>
                     <label htmlFor={`password${id}`}>{STRINGS[language].password}: </label>
-                    <input type="text" name="password" id={`password${id}`} ref={passwordRef} />
+                    <input type="password" name="password" id={`password${id}`} ref={passwordRef} />
                 </div>
                 <button>{STRINGS[language].button}</button>
             </form>
