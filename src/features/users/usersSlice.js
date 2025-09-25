@@ -12,7 +12,22 @@ const usersSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
+        login(state, action) {
+            debugger
+            const currentUser = state.users.find(u => u.name === action.payload.name && u.password === action.payload.password);
+            state.currentUser = currentUser ?? null;
+        },
+        register(state, action) {
+            const currentUser = action.payload;
+            const isExists = state.users.some(u => u.email === currentUser.email);
+
+            if (!isExists) {
+                state.users.push(action.payload);
+                state.currentUser = currentUser;
+            }
+        },
     },
 });
 
+export const { login, register } = usersSlice.actions;
 export default usersSlice.reducer;
