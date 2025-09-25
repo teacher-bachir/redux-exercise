@@ -10,7 +10,9 @@ export default function Settings() {
 
     return (
         <div>
-            <h2>הגדרות</h2>
+            {language === 'en' ?
+                (<h2>Settings</h2>) :
+                (<h2>הגדרות</h2>)}
             <form>
                 <div>
                     <label htmlFor={`lang${id}`}>שפה</label>
