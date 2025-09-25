@@ -1,6 +1,7 @@
 import { useId } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { decFontSize, incFontSize, resetFontSize, toggleLanguage, toggleTheme } from "./settingsSlice";
+import { Outlet } from "react-router-dom";
 
 export default function Settings() {
     const id = useId();
@@ -33,6 +34,7 @@ export default function Settings() {
                     <button type="button" onClick={() => dispatch(resetFontSize())}>אפס</button>
                 </div>
             </form>
+            <Outlet />
         </div>
     )
 }

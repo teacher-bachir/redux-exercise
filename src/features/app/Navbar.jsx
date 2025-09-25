@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import './Navbar.css';
 import { logout } from "../users/usersSlice";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
     const { language } = useSelector((state) => state.settings);
@@ -17,10 +18,12 @@ export default function Navbar() {
                     (<h1>Welcome {currentUser?.name ?? 'Guest'}</h1>) :
                     (<h1>שלום {currentUser?.name ?? 'אורח'}</h1>)}
                 <ul>
-                    {/* TODO: replace <a> tags with <NavLink> components */}
-                    <li><a href="#">home</a></li>
-                    <li><a href="#">about</a></li>
-                    <li><a href="#">recipes</a></li>
+                    <NavLink to="">home</NavLink>
+                    <NavLink to="settings">settings</NavLink>
+                    <NavLink to="settings/example">settings example</NavLink>
+                    <NavLink to="login">login</NavLink>
+                    <NavLink to="register">register</NavLink>
+                    <NavLink to="recipes">recipes</NavLink>
                 </ul>
                 {
                     currentUser &&
