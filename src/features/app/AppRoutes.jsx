@@ -6,6 +6,7 @@ import SettingsExamplePage from "../settings/SettingsExamplePage";
 import Login from "../users/Login";
 import Register from "../users/Register";
 import RecipesList from "../recipes/RecipesList";
+import NotFound from "./NotFound";
 
 export default function AppRoutes() {
     return (
@@ -16,6 +17,7 @@ export default function AppRoutes() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/recipes" element={<RecipesList />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     )
 }
