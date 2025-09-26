@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { AppBar, Avatar, Box, IconButton, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Box, IconButton, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import './Navbar.css';
