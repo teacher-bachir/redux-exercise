@@ -7,6 +7,7 @@ export default function RecipesList() {
     const STRINGS = {
         en: {
             title: "Recipes List",
+            recipesCount: "There are ??? recipes",
             pleaseLogin: "Please login to see the recipes.",
             loading: "Loading...",
             error: "Error loading recipes",
@@ -17,6 +18,7 @@ export default function RecipesList() {
         },
         he: {
             title: "רשימת מתכונים",
+            recipesCount: "ישנם ??? מתכונים",
             pleaseLogin: "אנא התחבר כדי לראות את המתכונים.",
             loading: "טוען...",
             error: "שגיאה בטעינת המתכונים",
@@ -46,6 +48,7 @@ export default function RecipesList() {
 
     return (<div className="RecipesList" style={style}>
         <h2>{STRINGS[language].title}</h2>
+        <p>{STRINGS[language].recipesCount.replace('???', recipes.length)}</p>
         {status === 'loading' && <p>{STRINGS[language].loading}</p>}
         {status === 'failed' && <p>{STRINGS[language].error}</p>}
         {status === 'succeeded' && <ul>
