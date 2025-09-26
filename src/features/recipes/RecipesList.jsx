@@ -28,6 +28,8 @@ export default function RecipesList() {
     };
 
     const { language } = useSelector(state => state.settings);
+    const style = { direction: language === 'he' ? 'rtl' : 'ltr' };
+
     const { currentUser } = useSelector(state => state.users);
     const { recipes, status } = useSelector(state => state.recipes);
     const dispatch = useDispatch();
@@ -39,10 +41,10 @@ export default function RecipesList() {
     }, [dispatch, recipes]);
 
     if (!currentUser) {
-        return <p style={{ direction: language === 'he' ? 'rtl' : 'ltr' }}>{STRINGS[language].pleaseLogin}</p>
+        return <p style={style}>{STRINGS[language].pleaseLogin}</p>
     }
 
-    return (<div className="RecipesList">
+    return (<div className="RecipesList" style={style}>
         <h2>{STRINGS[language].title}</h2>
         {status === 'loading' && <p>{STRINGS[language].loading}</p>}
         {status === 'failed' && <p>{STRINGS[language].error}</p>}
