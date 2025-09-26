@@ -4,6 +4,7 @@ import { fetchRecipes } from './recipesSlice';
 import './RecipesList.css'
 
 export default function RecipesList() {
+    const { currentUser } = useSelector(state => state.users);
     const { recipes, status } = useSelector(state => state.recipes);
     const dispatch = useDispatch();
 
@@ -12,6 +13,10 @@ export default function RecipesList() {
         if (!recipes?.length)
             dispatch(fetchRecipes());
     }, [dispatch, recipes]);
+
+    if (!currentUser) {
+        return <p>Please login to see the recipes.</p>
+    }
 
     return (<div className="RecipesList">
         <h2>Recipes List</h2>
