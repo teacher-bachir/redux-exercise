@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "./../app/axiosConfig";
 
-const API_URL = 'https://dummyjson.com/recipes';
+const API_URL = '/recipes';
 
 export async function getAllRecipes() {
     const response = await axios.get(API_URL);
