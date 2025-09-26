@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { AppBar, Avatar, Box, IconButton, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 import './Navbar.css';
 import { logout } from "../users/usersSlice";
-import { NavLink } from "react-router-dom";
 
 const STRINGS = {
     en: {
@@ -37,24 +40,29 @@ export default function Navbar() {
     const direction = (language === 'he') ? 'rtl' : 'ltr';
 
     return (
-        <div className="Navbar" style={{ direction }}>
-            <nav>
-                <h1>{STRINGS[language].welcome} {currentUser?.name ?? STRINGS[language].guest}</h1>
-                <ul>
-                    <li> <NavLink to="">{STRINGS[language].home}</NavLink></li>
-                    <li> <NavLink to="settings">{STRINGS[language].settings}</NavLink></li>
-                    <li> <NavLink to="settings/example">{STRINGS[language].settingsExample}</NavLink></li>
-                    <li> <NavLink to="login">{STRINGS[language].login}</NavLink></li>
-                    <li> <NavLink to="register">{STRINGS[language].register}</NavLink></li>
-                    <li> <NavLink to="recipes">{STRINGS[language].recipes}</NavLink></li>
-                </ul>
-                {
-                    currentUser &&
-                    <button onClick={() => dispatch(logout())}>
-                        {STRINGS[language].logout}
-                    </button>
-                }
-            </nav>
-        </div>
+        <Box className="Navbar" sx={{ direction }}>
+            <AppBar position="static" component="nav">
+                <Toolbar variant="dense">
+                    <Typography variant="h6" color="inherit" component="h1">
+                        {STRINGS[language].welcome} {currentUser?.name ?? STRINGS[language].guest}
+                    </Typography>
+                    <MenuItem><Typography><NavLink to="">{STRINGS[language].home}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography><NavLink to="settings">{STRINGS[language].settings}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography><NavLink to="settings/example">{STRINGS[language].settingsExample}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography><NavLink to="login">{STRINGS[language].login}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography><NavLink to="register">{STRINGS[language].register}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography><NavLink to="recipes">{STRINGS[language].recipes}</NavLink></Typography></MenuItem>
+
+                    {
+                        currentUser &&
+                        <Tooltip title={STRINGS[language].logout}>
+                            <IconButton sx={{ p: 0 }} onClick={() => dispatch(logout())}>
+                                <LogoutIcon />
+                            </IconButton>
+                        </Tooltip>
+                    }
+                </Toolbar>
+            </AppBar>
+        </Box>
     )
 }
