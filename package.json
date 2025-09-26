@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.2",
+    "@mui/stylis-plugin-rtl": "^7.3.2",
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.12.2",
     "react": "^19.1.1",
@@ -22,6 +23,7 @@
     "react-hook-form": "^7.63.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.2",
+    "stylis": "^4.3.6",
     "yup": "^1.7.1"
   },
   "devDependencies": {

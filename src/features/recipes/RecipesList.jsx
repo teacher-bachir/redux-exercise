@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecipes } from './recipesSlice';
 import './RecipesList.css'
+import Rating from '@mui/material/Rating';
 
 export default function RecipesList() {
     const STRINGS = {
@@ -58,7 +59,7 @@ export default function RecipesList() {
                 <p>{recipe.tags.map(tag => <span key={tag} className='tag'>{tag}</span>)}</p>
                 <p>{STRINGS[language].cookingTime}: {recipe.cookTimeMinutes} {STRINGS[language].minutes}</p>
                 <img src={recipe.image} alt={recipe.name} width={150} />
-                <p>{STRINGS[language].rating}: {new Array(Math.floor(recipe.rating)).fill(0).map((_, i) => <span key={i}>⭐</span>)}</p>
+                <p>{STRINGS[language].rating}: <Rating name="half-rating-read" defaultValue={recipe.rating} precision={0.1} readOnly /></p>
             </li>))}
         </ul>}
     </div>)
