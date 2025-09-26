@@ -46,12 +46,12 @@ export default function Navbar() {
                     <Typography variant="h6" color="inherit" component="h1">
                         {STRINGS[language].welcome} {currentUser?.name ?? STRINGS[language].guest}
                     </Typography>
-                    <MenuItem><Typography><NavLink to="">{STRINGS[language].home}</NavLink></Typography></MenuItem>
-                    <MenuItem><Typography><NavLink to="settings">{STRINGS[language].settings}</NavLink></Typography></MenuItem>
-                    <MenuItem><Typography><NavLink to="settings/example">{STRINGS[language].settingsExample}</NavLink></Typography></MenuItem>
-                    <MenuItem><Typography><NavLink to="login">{STRINGS[language].login}</NavLink></Typography></MenuItem>
-                    <MenuItem><Typography><NavLink to="register">{STRINGS[language].register}</NavLink></Typography></MenuItem>
-                    <MenuItem><Typography><NavLink to="recipes">{STRINGS[language].recipes}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography sx={{ fontSize: 'smaller' }}><NavLink to="">{STRINGS[language].home}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography sx={{ fontSize: 'smaller' }}><NavLink to="settings">{STRINGS[language].settings}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography sx={{ fontSize: 'smaller' }}><NavLink to="settings/example">{STRINGS[language].settingsExample}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography sx={{ fontSize: 'smaller' }}><NavLink to="login">{STRINGS[language].login}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography sx={{ fontSize: 'smaller' }}><NavLink to="register">{STRINGS[language].register}</NavLink></Typography></MenuItem>
+                    <MenuItem><Typography sx={{ fontSize: 'smaller' }}><NavLink to="recipes">{STRINGS[language].recipes}</NavLink></Typography></MenuItem>
 
                     {
                         currentUser &&
