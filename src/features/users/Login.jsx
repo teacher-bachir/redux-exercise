@@ -1,10 +1,19 @@
 import { useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup"
 
 import './Login.css';
 import { login } from './usersSlice';
 import Button from '../app/Button';
+
+const schema = yup
+    .object({
+        name: yup.string().trim().required(),
+        password: yup.string().min(6).required(),
+    })
+    .required();
 
 // uncontrolled form
 export default function Login() {
@@ -27,7 +36,9 @@ export default function Login() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
 
     const id = useId();
 
@@ -46,12 +57,12 @@ export default function Login() {
                 <div>
                     <label htmlFor={`name${id}`}>{STRINGS[language].name}: </label>
                     <input type="text" name="name" id={`name${id}`} {...register("name", { required: true })} />
-                    {errors.name && <span className='error'>Username is required</span>}
+                    {errors.name && <span className='error'>{errors.name.message}</span>}
                 </div>
                 <div>
                     <label htmlFor={`password${id}`}>{STRINGS[language].password}: </label>
                     <input type="password" name="password" id={`password${id}`} {...register("password", { required: true })} />
-                    {errors.password && <span className='error'>Password is required</span>}
+                    {errors.password && <span className='error'>{errors.password.message}</span>}
                 </div>
                 <Button hebrew={STRINGS.he.button} english={STRINGS.en.button} />
             </form>
