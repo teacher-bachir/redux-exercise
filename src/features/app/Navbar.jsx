@@ -4,6 +4,31 @@ import { logout } from "../users/usersSlice";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+    const STRINGS = {
+        en: {
+            welcome: 'Welcome',
+            guest: 'Guest',
+            logout: 'Logout',
+            home: 'Home',
+            settings: 'Settings',
+            settingsExample: 'Settings Example',
+            login: 'Login',
+            register: 'Register',
+            recipes: 'Recipes'
+        },
+        he: {
+            welcome: 'ברוך הבא',
+            guest: 'אורח',
+            logout: 'התנתקות',
+            home: 'בית',
+            settings: 'הגדרות',
+            settingsExample: 'דוגמא להגדרות',
+            login: 'התחברות',
+            register: 'הרשמה',
+            recipes: 'מתכונים'
+        }
+    };
+
     const { language } = useSelector((state) => state.settings);
     const { currentUser } = useSelector(state => state.users);
 
@@ -14,21 +39,19 @@ export default function Navbar() {
     return (
         <div className="Navbar" style={{ direction }}>
             <nav>
-                {language === 'en' ?
-                    (<h1>Welcome {currentUser?.name ?? 'Guest'}</h1>) :
-                    (<h1>שלום {currentUser?.name ?? 'אורח'}</h1>)}
+                <h1>{STRINGS[language].welcome} {currentUser?.name ?? STRINGS[language].guest}</h1>
                 <ul>
-                    <NavLink to="">home</NavLink>
-                    <NavLink to="settings">settings</NavLink>
-                    <NavLink to="settings/example">settings example</NavLink>
-                    <NavLink to="login">login</NavLink>
-                    <NavLink to="register">register</NavLink>
-                    <NavLink to="recipes">recipes</NavLink>
+                    <NavLink to="">{STRINGS[language].home}</NavLink>
+                    <NavLink to="settings">{STRINGS[language].settings}</NavLink>
+                    <NavLink to="settings/example">{STRINGS[language].settingsExample}</NavLink>
+                    <NavLink to="login">{STRINGS[language].login}</NavLink>
+                    <NavLink to="register">{STRINGS[language].register}</NavLink>
+                    <NavLink to="recipes">{STRINGS[language].recipes}</NavLink>
                 </ul>
                 {
                     currentUser &&
                     <button onClick={() => dispatch(logout())}>
-                        {language === 'en' ? 'Logout' : 'התנתקות'}
+                        {STRINGS[language].logout}
                     </button>
                 }
             </nav>
