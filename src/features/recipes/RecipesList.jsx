@@ -1,7 +1,17 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRecipes } from './recipesSlice';
 import './RecipesList.css'
 
 export default function RecipesList() {
-    const recipes = [];
+    const { recipes } = useSelector(state => state.recipes);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // improve: add status check to avoid re-fetching
+        if (!recipes?.length)
+            dispatch(fetchRecipes());
+    }, [dispatch, recipes]);
 
     return (<div className="RecipesList">
         <h2>Recipes List</h2>
@@ -12,7 +22,7 @@ export default function RecipesList() {
                 <p>{recipe.tags.map(tag => <span key={tag} className='tag'>{tag}</span>)}</p>
                 <p>Cooking time: {recipe.cookTimeMinutes} minutes</p>
                 <img src={recipe.image} alt={recipe.name} width={150} />
-                <p>Rating: { new Array(Math.floor(recipe.rating)).fill(0).map((_, i) => <span key={i}>⭐</span>)}</p>
+                <p>Rating: {new Array(Math.floor(recipe.rating)).fill(0).map((_, i) => <span key={i}>⭐</span>)}</p>
             </li>))}
         </ul>
     </div>)
