@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    recipes: [],
+    error: null,
+    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+};
+
 const recipesSlice = createSlice({
     name: "recipes",
-    initialState: {
-        recipes: [],
-        error: null,
-        status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
-    },
+    initialState,
     reducers: {
     },
 });
