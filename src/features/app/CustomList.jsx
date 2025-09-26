@@ -1,6 +1,7 @@
+import { List, ListItem } from '@mui/material';
 import { useSelector } from 'react-redux'
 
-export default function List({ hebrew, english }) {
+export default function CustomList({ hebrew, english }) {
     const { theme, language, fontSize } = useSelector((state) => state.settings);
 
     const value = (language === 'he') ? hebrew : english;
@@ -13,8 +14,8 @@ export default function List({ hebrew, english }) {
     };
 
     return (
-        <ol style={style}>
-            {value.map((item, index) => <li key={index}>{item}</li>)}
-        </ol>
+        <List style={style}>
+            {value.map((item, index) => <ListItem key={index}>{item}</ListItem>)}
+        </List>
     )
 }
