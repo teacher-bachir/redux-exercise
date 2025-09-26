@@ -1,6 +1,8 @@
-import { useId, useRef } from 'react'
+import { useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
+import './Login.css';
 import { login } from './usersSlice';
 import Button from '../app/Button';
 
@@ -21,32 +23,35 @@ export default function Login() {
         }
     };
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
     const id = useId();
-    const nameRef = useRef();
-    const passwordRef = useRef();
 
     const { language } = useSelector(state => state.settings);
     const direction = (language === 'he') ? 'rtl' : 'ltr';
     const dispatch = useDispatch();
 
-    const handleSubmit = (ev) => {
-        ev.preventDefault();
-        const name = nameRef.current.value;
-        const password = passwordRef.current.value;
+    const onSubmit = ({ name, password }) => {
         dispatch(login({ name, password }));
     };
 
     return (
-        <div style={{ direction }}>
+        <div className='Login' style={{ direction }}>
             <h2>{STRINGS[language].title}</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor={`name${id}`}>{STRINGS[language].name}: </label>
-                    <input type="text" name="name" id={`name${id}`} ref={nameRef} />
+                    <input type="text" name="name" id={`name${id}`} {...register("name", { required: true })} />
+                    {errors.name && <span className='error'>Username is required</span>}
                 </div>
                 <div>
                     <label htmlFor={`password${id}`}>{STRINGS[language].password}: </label>
-                    <input type="password" name="password" id={`password${id}`} ref={passwordRef} />
+                    <input type="password" name="password" id={`password${id}`} {...register("password", { required: true })} />
+                    {errors.password && <span className='error'>Password is required</span>}
                 </div>
                 <Button hebrew={STRINGS.he.button} english={STRINGS.en.button} />
             </form>
