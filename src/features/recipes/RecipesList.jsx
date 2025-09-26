@@ -4,7 +4,7 @@ import { fetchRecipes } from './recipesSlice';
 import './RecipesList.css'
 
 export default function RecipesList() {
-    const { recipes } = useSelector(state => state.recipes);
+    const { recipes, status } = useSelector(state => state.recipes);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,7 +15,9 @@ export default function RecipesList() {
 
     return (<div className="RecipesList">
         <h2>Recipes List</h2>
-        <ul>
+        {status === 'loading' && <p>Loading...</p>}
+        {status === 'failed' && <p>Error loading recipes</p>}
+        {status === 'succeeded' && <ul>
             {recipes.map(recipe => (<li key={recipe.id}>
                 <h3>{recipe.name}</h3>
                 <p>{recipe.ingredients.length} ingredients</p>
@@ -24,7 +26,7 @@ export default function RecipesList() {
                 <img src={recipe.image} alt={recipe.name} width={150} />
                 <p>Rating: {new Array(Math.floor(recipe.rating)).fill(0).map((_, i) => <span key={i}>⭐</span>)}</p>
             </li>))}
-        </ul>
+        </ul>}
     </div>)
 }
 
